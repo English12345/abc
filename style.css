@@ -19,10 +19,10 @@ header{display:flex;align-items:center;gap:12px}h2{margin:0;font-size:28px}
 .opt.yes{background:#4cc94c;color:#fff;animation:pop .4s}.opt.no{background:var(--coral);color:#fff;animation:shake .3s}.alt{background:var(--ink);color:#fff}
 .end{text-align:center;display:flex;flex-direction:column;gap:14px;margin:auto 0}.end .opt{width:100%}
 .note{text-align:center;font-size:14px;margin-top:auto}
-#splash{position:fixed;inset:0;z-index:9;background:var(--sun);display:grid;place-content:center;justify-items:center;gap:12px;transition:opacity .5s,visibility .5s}#splash.off{opacity:0;visibility:hidden}
+#splash{position:fixed;top:0;left:0;right:0;bottom:0;z-index:9;background:var(--sun);display:grid;place-content:center;justify-items:center;gap:12px;transition:opacity .5s,visibility .5s}#splash.off{opacity:0;visibility:hidden}
 .logo{font-size:110px;background:var(--paper);border-radius:40px;padding:22px;animation:bob 1.2s ease-in-out infinite}
 .dots i{display:inline-block;width:14px;height:14px;margin:0 5px;border-radius:50%;background:var(--ink);animation:bob .9s infinite}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
-#fx i{position:fixed;top:-12px;width:10px;height:16px;border-radius:3px;z-index:8;animation:fall 1.6s ease-in forwards}
-@keyframes fall{to{transform:translate(var(--x),105vh) rotate(720deg)}}@keyframes pop{50%{transform:scale(1.08)}}
+#fx i{position:fixed;top:-12px;width:10px;height:16px;border-radius:3px;z-index:20;pointer-events:none}
+@keyframes pop{50%{transform:scale(1.08)}}
 @keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}@keyframes bob{50%{transform:translateY(-10px)}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.logo,.dots i,.pic{animation:none}}

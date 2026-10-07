@@ -1,3 +1,4 @@
+// rev 2: index.json network-first; app mendaftar sw.js?v=<v> agar bump v memicu update
 // Daftar precache dibangun otomatis dari data/index.json -> level -> emoji. Tambah level cukup edit index.json (naikkan "v").
 const CORE=['./','index.html','style.css','app.js','manifest.json','icons/icon-192.png','icons/icon-512.png','emoji/1f4d6.svg','emoji/1f50a.svg','emoji/1f512.svg','emoji/2b50.svg','emoji/1f389.svg','emoji/1f4aa.svg'];
 const J=async u=>(await fetch(u,{cache:'no-store'})).json();
@@ -10,4 +11,6 @@ self.addEventListener('activate',e=>e.waitUntil((async()=>{
  try{const x=await J('data/index.json');for(const k of await caches.keys())if(k!='bm-'+x.v)await caches.delete(k)}catch{}
  clients.claim();
 })()));
-self.addEventListener('fetch',e=>{if(e.request.method=='GET')e.respondWith(caches.match(e.request,{ignoreSearch:true}).then(r=>r||fetch(e.request)))});
+self.addEventListener('fetch',e=>{const r=e.request;if(r.method!='GET')return;
+ if(r.url.includes('data/index.json'))return e.respondWith(fetch(r,{cache:'no-store'}).catch(()=>caches.match(r,{ignoreSearch:true})));
+ e.respondWith(caches.match(r,{ignoreSearch:true}).then(c=>c||fetch(r)))});
